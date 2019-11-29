@@ -23,6 +23,8 @@ Customer can participate on provided survey so that archieve point/promotion.
 Fullstack project in Autumn 2018,
 - Original Front end git repository - https://github.com/tapiopa/SurveyApplication
 - Original REST API repository - https://github.com/t7haki01/surveyAPI
+- Deploy in heroku, https://salty-sea-09049.herokuapp.com/login // ex) customerA:test1
+* Bit buggy due to old/vulnerable dependencies and hosting/addon issues
 
 This repository is reformatted to provide application in a single node, root and port
 
