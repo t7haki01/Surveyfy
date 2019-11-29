@@ -1,9 +1,16 @@
-
+/*
+* NewQuestion.js
+*
+*/
 
 import React from 'react';
 import {Button, ButtonGroup} from "react-bootstrap";
 import classes from "./SurveyBuilder.css";
-
+// import {Table, FormControl, FormGroup, ControlLabel, PageHeader, Button,
+//     //ButtonToolbar,
+//     ButtonGroup,
+//     //Alert
+// } from 'react-bootstrap';
 
 const newQuestion = props => {
     return (

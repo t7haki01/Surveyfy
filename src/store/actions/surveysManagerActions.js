@@ -1,10 +1,16 @@
 import {
+    // CREATE_SURVEY,
+    // CREATE_SURVEY_FAILED,
     DELETE_SURVEY, DELETE_SURVEY_FAILED,
+    // EDIT_SURVEY,
+    // EDIT_SURVEY_DATA,
     LIST_SURVEYS, LIST_SURVEYS_FAILED,
+    // SET_SURVEY_ID
 } from "./actionsTypes";
 import axios from "../../axios-survey";
 
 const listSurveys = (surveys) => {
+    console.log("action, listSurveys", surveys);
     return {type: LIST_SURVEYS, surveys: surveys}
 };
 
@@ -21,6 +27,7 @@ export const asyncListSurveys = (user_id) => {
                     if (response.data.errno) {
                         dispatch(listSurveysFailed(response.data.sqlMessage));
                     } else {
+                        // console.log("!!!asyncListSurveys, response", response);
                         const surveys = response.data;
                         dispatch(listSurveys(surveys));
                     }
@@ -33,6 +40,7 @@ export const asyncListSurveys = (user_id) => {
                     if (response.data.errno) {
                         dispatch(listSurveysFailed(response.data.sqlMessage));
                     } else {
+                        // console.log("!!!asyncListSurveys, response", response);
                         const surveys = response.data;
                         dispatch(listSurveys(surveys));
                     }
@@ -43,6 +51,7 @@ export const asyncListSurveys = (user_id) => {
 };
 
 const deleteSurvey = (survey) => {
+    console.log("deleteSurvey, survey", survey);
     return {type: DELETE_SURVEY, survey: survey};
 };
 
@@ -52,9 +61,11 @@ const deleteSurveyFailed = (error) => {
 };
 
 export const asyncDeleteSurvey = (survey) => {
+    console.log("asyncDeleteSurvey, survey", survey);
     return dispatch => {
         axios.delete(`/surveys/${survey.id}`)
         .then(response => {
+            console.log("asyncDeleteSurvey, response", response);
             if (response.status === 200) {
                 if (response.data.errno) {
                     dispatch(deleteSurveyFailed(response.data.sqlMessage));
@@ -65,3 +76,8 @@ export const asyncDeleteSurvey = (survey) => {
         })
     }
 };
+//
+// const editSurvey = (survey) => {
+//     return {type: EDIT_SURVEY, survey};
+// };
+

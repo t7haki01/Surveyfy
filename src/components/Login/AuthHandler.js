@@ -1,11 +1,11 @@
 import decode from 'jwt-decode';
-import setting from '../../assets/settings/setting';
-
+// import axios from 'axios';
 export default class AuthHandler {
   login = (account, password) => {
     // Get a token from api server using the fetch api
     //Intead of axios, fetch has been used for experiencing difference betweem axios
-    return this.fetch(setting.api.url + '/login', {
+      console.log("?????????????AuthHandler, login, account", account, "password", password);
+    return this.fetch(`http://localhost:3000/login`, {
       method: 'POST',
       body: JSON.stringify({
         account,
@@ -143,3 +143,20 @@ export default class AuthHandler {
         }
     };
 }
+//
+// const mapStateToProps = (state) => {
+//   return {
+//       account: state.account,
+//       user: state.user,
+//       app: state.app
+//   }
+// };
+//
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         onLoginUser: (user_id) => dispatch(asyncLoginUser(user_id))
+//     }
+// };
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(AuthHandler);
+// // export default AuthHandler;

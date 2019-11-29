@@ -38,6 +38,7 @@ const surveyReducers= (state = initialState, action) => {
             return {...state, survey}
         }
         case GET_SURVEY_AND_QUESTIONS: {
+            console.log("reducer, get survey and questions, survey", action.survey);
             const questions = action.survey.questions.slice(0);
             questions.forEach((question, index) => {
                 question.editing = false;
@@ -47,13 +48,19 @@ const surveyReducers= (state = initialState, action) => {
                 if (q.answers) {
                     answers = q.answers.slice(0);
                 } else {
+                   console.log("surveyReducers, question with no answers", q.question);
                 }
                 question.answers = answers;
             });
+            // console.log("reducer get survey and questions, questions", questions);
+            // console.log("reducer, get survey and questions, action survey before update", action.survey);
             const survey = {...action.survey};
+            // console.log("reducer, get survey and questions,  survey", survey);
             survey.questions = questions;
+            // console.log("reducer, get survey and questions,  survey with questions", survey);
             survey.fetched = true;
             const newState = {...state, survey};
+            console.log("reducer, get survey and questions, newState", newState);
             return newState;
         }
         case GET_SURVEY_AND_QUESTIONS_FAILED: {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import AuthHandler from '../Login/AuthHandler';
+// import {connect} from "react-redux";
+// import {logoutUser} from "../../store/actions";
 
 /* A higher order component (HOC) is frequently written as a function that returns a class. */
 export default function CompanyOnly(CompanyComponent) {

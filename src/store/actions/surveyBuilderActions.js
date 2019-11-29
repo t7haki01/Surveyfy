@@ -3,6 +3,7 @@
 * */
 import {
     CREATE_QUESTION,
+    // ADD_QUESTION,
     EDIT_QUESTION,
     DELETE_QUESTION,
     SAVE_QUESTION,
@@ -13,6 +14,7 @@ import {
     FETCH_SURVEY_FAILED,
     FETCH_SURVEY,
     SAVE_SURVEY,
+    // DELETE_SURVEY,
     EDIT_SURVEY_DATA,
     CREATE_ANSWER,
     SAVE_ANSWER,
@@ -28,6 +30,7 @@ import {
     SAVE_QUESTION_FAILED,
     SET_SURVEY_ID,
     CREATE_SURVEY_FAILED,
+    // DELETE_SURVEY_FAILED,
     SET_SURVEY_TITLE,
     SET_QUESTION_STRING, SET_ANSWER_STRING
 } from "./actionsTypes";
@@ -39,18 +42,22 @@ export const editSurvey = (survey) => {
 };
 
 export const setSurveyTitle = (survey, title) => {
+    console.log("setSurveyTitle, survey", survey, "title", title);
     return {type: SET_SURVEY_TITLE, survey, title};
 };
 
 export const setQuestionString = (question_id, question_string) => {
+    console.log("setQuestionString, question id", question_id, "string", question_string);
     return {type: SET_QUESTION_STRING, id: question_id, question: question_string};
 };
 
 export const setAnswerString = (answer_id, answer_string) => {
+    console.log("setAnswerString, answer id", answer_id, "string", answer_string);
     return {type: SET_ANSWER_STRING, id: answer_id, answer: answer_string};
 };
 
 const saveSurvey = (survey) => {
+    console.log("saveSurvey, survey", survey);
     return {type: SAVE_SURVEY, survey: survey};
 };
 
@@ -60,10 +67,14 @@ const saveSurveyFailed = (error) => {
 };
 
 export const asyncSaveSurvey = (survey, newSurvey) => {
+    console.log("asyncSaveSurvey, survey", survey);
     return dispatch => {
+        console.log("asyncSaveSurvey, new survey?", newSurvey);
         if (newSurvey) {
-            axios.post(`/surveys`, survey)
+            console.log("asyncSaveSurvey, NEW survey");
+            axios.post(`/surveys`, survey) ///${survey.id}
             .then(response => {
+                console.log("asyncSaveSurvey, POST response", response);
                 if (response.status === 200) {
                     if (response.data.errno) {
                         console.log("asyncSaveSurvey, POST sql error", response.data.sqlMessage);
@@ -78,12 +89,14 @@ export const asyncSaveSurvey = (survey, newSurvey) => {
                 dispatch(saveSurveyFailed(error));
             });
         } else {
+            console.log("asyncSaveSurvey, OLD survey");
             const srvy = {
                 title: survey.title,
                 owner: survey.owner
             };
-            axios.put(`/surveys/${survey.id}`, srvy)
+            axios.put(`/surveys/${survey.id}`, srvy) ///${survey.id}
             .then(response => {
+                console.log("asyncSaveSurvey, PUT response", response);
                 if (response.status === 200) {
                     if (response.data.errno) {
                         console.log("asyncSaveSurvey, PUT sql error", response.data.sqlMessage);
@@ -104,6 +117,7 @@ export const asyncSaveSurvey = (survey, newSurvey) => {
 
 
 const createAnswer = (answer) => {
+    console.log("createAnser, answer", answer);
     return {type: CREATE_ANSWER, answer: answer}
 };
 
@@ -120,10 +134,12 @@ export const asyncCreateAnswer = (answer) => {
                 if (maxResponse.data.errno) {
                     dispatch(createAnswerFailed(maxResponse.data.sqlMessage));
                 } else {
+                    console.log("asyncCreateAnswer, maxId", maxResponse.data[0].maxId);
                     answer.id = maxResponse.data[0].maxId + 1;
                     /*********** POST ANSWER *************/
                     axios.post("/answer_options", answer)
                     .then(response => {
+                        console.log("asyncCreateAnswer, post, response", response);
                         if (response.status === 200) {
                             if (response.data.errno) {
                                 dispatch(createAnswerFailed(response.data.sqlMessage));
@@ -145,6 +161,7 @@ export const asyncCreateAnswer = (answer) => {
 };
 
 const saveAnswer = (answer) => {
+    console.log("action, saveAnswer, answer", answer);
     return {type: SAVE_ANSWER, answer: answer}
 };
 
@@ -154,8 +171,10 @@ const saveAnswerFailed = (error) => {
 
 export const asyncSaveAnswer = (answer) => {
     return dispatch => {
+        console.log("asyncSaveAnswer answer", answer);
         axios.put(`/answer_options/${answer.id}`, answer)
         .then(response => {
+            console.log("asyncSaveAnswer, response", response);
             if (response.status === 200) {
                 if (response.data.errno) {
                     dispatch(saveAnswerFailed(response.data.sqlMessage));
@@ -184,8 +203,10 @@ const deleteAnswerFailed = (error) => {
 
 export const asyncDeleteAnswer = (answer) => {
     return dispatch => {
+        console.log("asyncDeleteAnswer, answer id", answer.id);
         axios.delete(`/answer_options/${answer.id}`)
         .then(response => {
+            console.log("asyncDeleteAnswer, response", response);
             if (response.status === 200) {
                 if (response.data.errno) {
                     dispatch(deleteAnswerFailed(response.data.sqlMessage));
@@ -209,6 +230,7 @@ export const editQuestion = (question) => {
 };
 
 const deleteQuestion = (question_id) => {
+    console.log("action, deleteQuestion, question", question_id);
     return {type: DELETE_QUESTION, id: question_id}
 };
 
@@ -218,9 +240,11 @@ const deleteQuestionFailed = (error) => {
 };
 
 export const asyncDeleteQuestion = (question_id) => {
+    console.log("action, asyncDeleteQuestion, question", question_id);
     return dispatch => {
         axios.delete(`/questions/${question_id}`)
         .then(response => {
+            console.log("action, asyncDeleteQuestion, response", response);
             if (response.status === 200) {
                 if (response.data.errno) {
                     dispatch(deleteQuestionFailed(response.data.sqlMessage));
@@ -236,6 +260,7 @@ export const asyncDeleteQuestion = (question_id) => {
 };
 
 const saveQuestion = (question, newQuestion) => {
+    console.log("action, saveQuestion, question", question);
     return {type: SAVE_QUESTION, question, newQuestion}
 };
 
@@ -245,8 +270,10 @@ const saveQuestionFailed = (error) => {
 
 export const asyncSaveQuestion = (question, newQuestion) => {
     return dispatch => {
+        console.log("asyncSaveQuestion, question", question);
         axios.put(`/questions/${question.id}`, question)
         .then(response => {
+            console.log("asyncSaveQuestion, response", response);
             if (response.status === 200) {
                 if (response.data.errno) {
                     dispatch(saveQuestionFailed(response.data.sqlMessage));
@@ -274,6 +301,7 @@ export const hideAnswers = (question) => {
 };
 
 const fetchSurvey = (survey) => {
+    // console.log("fetchSurvey, survey", survey);
     return {type: FETCH_SURVEY, survey: survey}
 };
 
@@ -323,6 +351,7 @@ const createQuestionFailed = (error) => {
 
 export const asyncCreateQuestion = (question) => {
     return dispatch => {
+        console.log("asyncCreateQuestion, maxId", question);
         /*********** FETCH MAX ID *************/
         axios.get("questions/maxId")
         .then(maxResponse => {
@@ -331,6 +360,7 @@ export const asyncCreateQuestion = (question) => {
                     console.log("ERROR", maxResponse.data.sqlMessage);
                     dispatch(createQuestionFailed(maxResponse.data.sqlMessage))
                 } else {
+                    console.log("asyncCreateQuestion, maxId", maxResponse.data[0].maxId);
                     question.id = maxResponse.data[0].maxId + 1;
                     /*********** POST QUESTION *************/
                     axios.post("/questions", question)
@@ -340,6 +370,7 @@ export const asyncCreateQuestion = (question) => {
                                 console.log("ERROR", response.data.sqlMessage);
                                 dispatch(createQuestionFailed(response.data.sqlMessage))
                             } else {
+                                console.log("asyncCreateQuestion, post, response", response);
                                 dispatch(createQuestion(response.data));
                             }
                         }
@@ -358,10 +389,12 @@ export const asyncCreateQuestion = (question) => {
 
 
 export const setSurveyId = (survey_id) => {
+    console.log("!!!setSurveyId, id", survey_id);
     return {type: SET_SURVEY_ID, id: survey_id};
 };
 
 const createSurvey = (survey_id) => {
+    console.log("CreateSurvey");
     return {type: CREATE_SURVEY, id: survey_id};
 };
 
@@ -370,13 +403,16 @@ const createSurveyFailed = (error) => {
 };
 
 export const asyncCreateNewSurvey = () => {
+    console.log("!!!asyncCreateSurvey");
     return dispatch => {
         axios.get("/surveys/maxId")
         .then(response => {
+            console.log("!!!asyncCreateSurvey, response", response);
             if (response.status === 200) {
                 if (response.data.errno) {
                     dispatch(createSurveyFailed(response.data.sqlMessage));
                 } else {
+                    console.log("!!!asyncCreateSurvey, response data 0 maxId", response.data[0].maxId);
                     dispatch(createSurvey(response.data[0].maxId + 1));
                 }
             }
@@ -386,3 +422,18 @@ export const asyncCreateNewSurvey = () => {
         });
     }
 };
+
+//example of async code
+// const asyncAddquestion = (/*possible parameters here*/) => {
+//     return {type: ADD_QUESTION /*, possible parameters here*/}
+// };
+// const addQuestionFailed = (error) => {
+//     return {type: ADD_QUESTION_FAILED, error};
+// };
+// export const addQuestion = (/*possible parameters here*/) => {
+//     return dispatch /*, getState*/ => {
+//         /*async code here, .then()*/
+//         /*e.g., const oldCounter = getState().counter*/
+//         dispatch(asyncAddquestion(/*possible parameters here*/));
+//     };
+// };

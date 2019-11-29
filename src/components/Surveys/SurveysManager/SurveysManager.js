@@ -34,11 +34,13 @@ class SurveysManager extends Component {
     }
 
     addNewSurvey() {
+        console.log("addNewSurvey");
         this.props.onCreateNewSurvey();
         this.props.history.push("/surveybuilder");
     }
 
     deleteSurvey(survey) {
+        console.log("deleteSurvey");
         this.props.onDeleteSurvey(survey);
     }
 

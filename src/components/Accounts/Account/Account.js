@@ -49,6 +49,7 @@ class Account extends Component {
         joinedDate: null,
         modifiedDate: null,
         isExpired: null,
+        //startDate: null,
         editing: false,
         newAccount: false,
         routing: false,
@@ -65,6 +66,7 @@ class Account extends Component {
     constructor(props) {
         super(props);
         this.handleExpireDateChange = this.handleExpireDateChange.bind(this);
+        // this.getDateString = this.getDateString.bind(this);
         this.getDateMoment = this.getDateMoment.bind(this);
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -72,6 +74,10 @@ class Account extends Component {
             this
         );
         this.setExpires = this.setExpires.bind(this);
+        // this.addNewAccount = this.addNewAccount.bind(this);
+        // this.deleteAccount = this.deleteAccount.bind(this);
+        // this.saveAccount = this.saveAccount.bind(this);
+        // this.resetFields = this.resetFields.bind(this);
         this.getFormattedMoment = this.getFormattedMoment.bind(this);
         this.formatMoment = this.formatMoment.bind(this);
         this.editAccount = this.editAccount.bind(this);
@@ -84,19 +90,67 @@ class Account extends Component {
     }
 
     componentDidMount() {
+        console.log('Passing props account' + this.props.account + " and props.id" + this.props.account.id);
+        console.log('Account, componentDidMount, props', this.props);
+        // if (this.props.app.account_id) {
+        //     console.log("account_id");
+        //     if (!this.props.account.id) {
+        //         console.log("not account id");
+        //     }
+        // }
+        console.log('componentDidMount, props new account', this.props.account.newAccount);
+        // if (this.props.account && this.props.account.id) {
+        //     console.log('Account, componentDidMount, account id', this.props.account.id);
+        //     this.setState({editing: false, id: this.props.account.id});
+        //     this.props.onFetchAccount(this.props.account.id);
         if (this.props.accountsManager.selectedAccount) {
+            console.log('Account, componentDidMount, selectedAccount', this.props.accountsManager.selectedAccount);
             this.setState({editing: false, id: this.props.accountsManager.selectedAccount});
             this.props.onFetchAccount(this.props.accountsManager.selectedAccount);
         } else if (this.props.app.account_id) {
+            console.log('Account, componentDidMount, app account_id', this.props.app.account_id);
             this.setState({editing: false, id: this.props.app.account_id});
             this.props.onFetchAccount(this.props.app.account_id);
         }
+        //if (this.props.account && !this.props.account.routing && !this.state.newAccount) {
+        // if (!this.props.account.newAccount) {
+        //     console.log("componentDidMount, not new account");
+        //         if (!this.props.account.id && this.props.app.account_id) {
+        //             console.log("componentDidMount, setting account id, APP  account_id", this.props.app.account_id);
+        //             this.props.onFetchAccount(this.props.app.account_id);
+        //         } else if (this.props.account.id) {
+        //             console.log("Account, componentDidMount, ACCOUNT id: ", this.props.account.id);
+        //             this.props.onFetchAccount(this.props.account.id);
+        //         }
+        //
+        // } else
+        //     if (this.props.account.newAccount) {
+        console.log('componentDidMount,AFTER, props', this.props);
+        // this.updateState(this.props);
+        // }
     }
 
+    // componentDidUpdate() {
+    //   console.log('componentDidUpdate, state', this.state);
+    //   if (
+    //     this.props.account &&
+    //     this.props.account.id &&
+    //     this.props.account.id !== this.state.id
+    //   ) {
+    //     this.updateState(this.props);
+    //   }
+    // }
+
     componentWillReceiveProps(nextProps) {
+      console.log('Account, componentWillReceiveProps, nextProps', nextProps);
       if (!this.props.account.newAccount && this.props.account.fetchSuccess) {
+        console.log('componentWillReceiveProps, not new account');
         if (!this.props.account.id && this.props.app.account_id) {
+          console.log('componentWillReceiveProps, setting account id, APP  account_id', this.props.app.account_id);
+          // this.props.onFetchAccount(this.props.app.account_id);
         } else if (this.props.account.id) {
+          console.log('Account, componentWillReceiveProps, ACCOUNT id: ', this.props.account.id);
+          // this.props.onFetchAccount(this.props.account.id);
         }
       }
       if (nextProps.account) {
@@ -113,17 +167,23 @@ class Account extends Component {
           this.setState({ editing: nextProps.account.editing });
         }
       }
+      console.log('Account, componentWillReceiveProps, state', this.state);
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
+        console.log('shouldComponentUpdate this.props', this.props, 'next props', nextProps);
         if (nextProps.account !== this.props.account || nextProps.account.componentShouldUpdate) {
+            console.log('shouldComponentUpdate, YESS');
             nextProps.account.componentShouldUpdate = false;
             return true;
         }
+        console.log('shouldComponentUpdate, no difference in account');
         return true;
     }
 
     updateState(someProps) {
+        console.log('Account, updateState, props', someProps);
+        console.log('updateState, account id', someProps.account.id);
         this.setState({
             id: someProps.account.id,
             accountName: someProps.account.account,
@@ -152,7 +212,9 @@ class Account extends Component {
             routing: someProps.account.routing,
             editing: someProps.account.editing,
             newAccount: someProps.account.newAccount
+            // newAccount: false
         });
+        console.log('Account, updateState, state', this.state);
     }
 
     goBack() {
@@ -167,6 +229,21 @@ class Account extends Component {
     cancelEditing = account => {
         const unEditedAccount = this.state.unEditedState;
         unEditedAccount.account = this.state.unEditedState.accountName;
+        //   this.setState({
+        //       id: this.state.unEditedState.id,
+        //       account: this.state.unEditedState.account,
+        //       password: "", //this.state.unEditedPassword,
+        //       confirmPassword: "",
+        //       expireDate: this.state.unEditedState.expireDate,
+        //       joinedDate: this.state.unEditedState.joinedDate,
+        //       modifiedDate: this.state.unEditedState.modifiedDate,
+        //       editing: false
+        //   });
+        // console.log("cancelEditing, AFTER account", this.state.account,
+        //     "password", this.state.password);
+        // document.getElementById("username").value = this.state.account;
+        // // document.getElementById("password").value = " ";
+
         this.props.onCancelEditAccount(unEditedAccount);
     };
 
@@ -186,6 +263,7 @@ class Account extends Component {
                 ? this.formatMomentForDatabaseSaving(this.state.modifiedDate)
                 : null
         };
+        console.log('saveAccount, account', saveAccount);
         if (this.state.newAccount) {
             this.props.onSaveNewAccount(saveAccount);
         } else {
@@ -240,6 +318,7 @@ class Account extends Component {
     }
 
     handleExpireDateChange(date) {
+        console.log("Account, handleExpireDateChange, date", date);
         this.setState({
             editing: true,
             expireDate: date
@@ -256,9 +335,21 @@ class Account extends Component {
         }
     }
 
+    logState = () => {
+      // console.log("getDateMoment, name of constructor of date string", dateString.constructor.name);
+        // console.log("getMomentFromDateString, dateString", dateString);
+        for (const key of Object.keys(this.state)) {
+            console.log(key, this.state[key]);
+        }
+    };
+
     getDateMoment = dateString => {
         if (dateString) {
-            if (dateString.constructor.name === 'String') {
+            // console.log("getDateMoment, name of constructor of date string", dateString.constructor.name);
+            if (dateString.constructor.name == 'String') {
+                // console.log("getMomentFromDateString, dateString", dateString);
+                //dateString = "2020-12-20";
+                //dateString = this.getDateString(dateString);
                 const year = dateString.slice(0, 4);
                 const month = dateString.slice(5, 7);
                 const day = dateString.slice(8, 10);
@@ -269,43 +360,58 @@ class Account extends Component {
                     year + '-' + month + '-' + day + ' ' + hour + ':' + min + ':' + sec;
                 return moment(newDate);
             }
+            // return moment();
             return dateString;
         }
         return null;
     };
 
     getFormattedMoment = date => {
+    // let dateMoment = dateString;
+    // if (dateString && dateString.constructor.name === 'String') {
+      // console.log("formatMoment, going for getDateMoment with", dateString)
         return this.getDateMoment(date)
             ? this.getDateMoment(date).format('DD.M.YYYY')
             : null;
     };
 
     formatMoment(dateString, withTime) {
+        // console.log("formatMoment, dateString", dateString);
         let dateMoment = dateString;
-        if (dateString && dateString.constructor.name === 'String') {
+        if (dateString && dateString.constructor.name == 'String') {
+            // console.log("formatMoment, going for getDateMoment with", dateString)
             dateMoment = this.getDateMoment(dateString);
         }
+        // console.log("formatMoment, dateMoment", dateMoment);
         if (withTime) {
+            // console.log("formatMoment with Time", dateMoment);
             return dateMoment ? dateMoment.format('DD.M.YYYY h:mm:ss') : null;
         } else if (dateMoment) {
+            // console.log("formatMoment just date", dateMoment);
             return dateMoment.format('DD.M.YYYY');
         }
     }
 
     formatMomentForDatabaseSaving(dateMoment) {
-        if (dateMoment && dateMoment.constructor.name === 'String') {
+        if (dateMoment && dateMoment.constructor.name == 'String') {
+            // console.log("formatMoment, going for getDateMoment with", dateString)
             dateMoment = this.getDateMoment(dateMoment);
         }
-        if (dateMoment && dateMoment.constructor.name === 'Moment') {
+        if (dateMoment && dateMoment.constructor.name == 'Moment') {
             return dateMoment.format('YYYY-MM-DD hh:mm:ss');
         }
         return null;
     }
 
     render() {
+        // console.log("account, render, props", this.props);
+        // console.log("account, render, state", this.state);
+
         return (
             <div className={classes.account}>
                 <PageHeader className={classes.pageHeader}>Account</PageHeader>
+                {/*<label>ID</label>*/}
+                {/*<p>state: {this.state.id} and props: {this.props.account.id}</p>*/}
                 <Clearfix/>
                 <form className={classes.form}>
                     <FormGroup>
@@ -410,6 +516,12 @@ class Account extends Component {
                     </FormGroup>
 
                     <ButtonToolbar className={classes.buttonToolbar}>
+                        {/*<Button disabled={this.state.editing} bsStyle="success"*/}
+                        {/*onClick={this.addNewAccount}>Add Account</Button>*/}
+                        {/*<Button disabled={this.state.editing} bsStyle="danger"*/}
+                        {/*onClick={this.deleteAccount}>Delete Account</Button>*/}
+                        {/*<Button disabled={true} bsStyle="primary"*/}
+                        {/*onClick={this.listAccounts}>List Accounts</Button>*/}
                         <Button
                             disabled={this.state.editing}
                             bsStyle="primary"
@@ -436,12 +548,15 @@ class Account extends Component {
                         </Button>
                     </ButtonToolbar>
                 </form>
+
+                {/*<button className="btn btn-success" onClick={this.logState}>Log</button>*/}
             </div>
         );
     }
 }
 
 const mapStateToProps = state => {
+    // console.log("Account, mapStateToProps, account", state.account);
     return {
         app: state.app,
         user: state.user,

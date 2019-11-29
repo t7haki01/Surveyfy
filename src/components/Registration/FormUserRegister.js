@@ -23,6 +23,7 @@ export class FormUserDetails extends Component {
   continue = e => {
     e.preventDefault();
     if(this.props.values.passwordConfirm !== this.props.values.password){
+      console.log('Password does not match!')
       this.setState({isMatch: false})
     }else{
       this.props.nextStep();
@@ -32,6 +33,7 @@ export class FormUserDetails extends Component {
 
   handlePasswordMatch = (password, passwordConfirm) => {
     if( password !== passwordConfirm){
+      console.log('Password does not match!')
       this.setState({isMatch:false})
     }else{
       this.props.nextStep();

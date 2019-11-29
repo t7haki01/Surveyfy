@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {List, ListItem} from 'material-ui/List';
 import RaisedButton from 'material-ui/RaisedButton';
+
+// import * as ApiHelpers from '../ApiHelpers';
 import moment from "moment";
 
 import axios from "../../axios-survey";
@@ -41,6 +43,8 @@ export class FormUserDetails extends Component {
     };
 
     // PROCESS FORM //
+
+    console.log("Registration, props", this.props, "state", this.state);
     this.props.onCreateNewAccount(newAccount);
     this.props.onCreateNewUser(newUser);
 

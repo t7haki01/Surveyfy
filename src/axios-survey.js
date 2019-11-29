@@ -1,8 +1,7 @@
 import axios from 'axios';
-import setting from './assets/settings/setting';
 
 const instance = axios.create({
-    baseURL: setting.api.url
+    baseURL: 'http://localhost:3000/'
 });
 
 export default instance;

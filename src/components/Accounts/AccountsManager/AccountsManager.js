@@ -28,6 +28,7 @@ import {
 
 import classes from './AccountsManager.css';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
+// import {NavLink} from "react-router-dom";
 import AdminOnly from '../../Login/AdminOnly';
 
 class AccountsManager extends Component {
@@ -45,13 +46,21 @@ class AccountsManager extends Component {
     }
 
     createAccount() {
+        console.log('Accounts manager, create account BEFORE creat');
+        // this.props.onResetAccount();
         this.props.onCreateAccount();
+        console.log('Accounts manager, create account AFTER create');
         this.props.history.push('/account');
+        console.log('Accounts manager, create account AFTER PUSH account page');
     }
 
     editAccount(account) {
+        console.log("AccountsManager, editAccount, props", this.props);
         this.props.onResetAccount();
         this.props.onSelectAccount(account.id);
+        // this.props.onEditAccount(account);
+        //   this.props.onSetAccountId(account.id);
+        // this.props.onFetchAccount(account);
         this.props.history.push('/account');
     }
 
@@ -63,6 +72,7 @@ class AccountsManager extends Component {
         return (
             <div className={classes.accountManager}>
                 <h1>Accounts Manager</h1>
+                {/*<h2>Accounts:</h2>*/}
                 <Table className={classes.table}>
                     <thead>
                     <tr>

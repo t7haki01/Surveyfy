@@ -21,18 +21,35 @@ class SurveyForm extends Component {
     constructor(props){
         super(props);
         this.getSurvey = this.getSurvey.bind(this);
+        this.logState = this.logState.bind(this);
         this.state={title: ""}
     }
+
+  // Handle fields change
+  // handleChange = input => e => {
+  //   this.setState({ [input]: e.target.value });
+  // };
+
 
     getSurvey(survey_id) {
         this.props.onGetSurveyAndQuestions(survey_id);
     }
 
   componentWillMount(){
+        // if (this.props.survey.fetchData) {
+            // this.getSurvey(this.props.survey.id);
+            // this.getSurvey(this.props.survey.survey.id);
+        // }
+      // this.loadQuestion();
+      // this.loadAnswerOpt();
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
         if (
+            // this.props.survey !== nextProps.survey ||
+        //     this.props.survey.survey && nextProps.survey.survey && this.props.survey.survey !== nextProps.survey.survey ||
+        //     this.props.survey.survey && this.props.survey.survey.questions && nextProps.survey.survey && nextProps.survey.survey.questions &&
+        //     this.props.survey.survey.questions !== nextProps.survey.survey.questions ||
             this.props.survey.survey && this.props.survey.survey.questions && this.props.survey.survey.questions[0] &&
             nextProps.survey.survey && nextProps.survey.survey.questions && nextProps.survey.survey.questions[0] &&
             this.props.survey.survey.questions[0].answers !== nextProps.survey.survey.questions[0].answers &&
@@ -49,6 +66,23 @@ class SurveyForm extends Component {
         }
   }
 
+    // loadQuestion = async () => {
+    //     let questions = await apiCalls.getQuestion();
+    //     this.setState({questions});
+    // };
+    //
+    // loadAnswerOpt = async () => {
+    //     let AnswerOpt = await apiCalls.getAnswerOpt();
+    //     this.setState({AnswerOpt});
+    // };
+
+    logState = () => {
+        // for (const key of Object.keys(this.state)) {
+        //     console.log(key, this.state[key]);
+        // }
+        console.log("User, state", this.state);
+    };
+
     handleSubmit = (e) => {
         console.log("!!!!SurveyForm, handleSubmit, HERE, e", e);
         e.preventDefault();
@@ -57,11 +91,16 @@ class SurveyForm extends Component {
         Answer.forEach( (val) => this.props.onRegisterAnswer(val.AnswerOpt, val.questionId, this.props.app.user_id));
         alert("Thank you for participating in this survey!");
         this.props.history.push("/surveys");
+        //apiCalls.registerAnswer(val.AnswerOpt, val.questionId));
         alert("Thanks you for taking the survey");
         
     };
 
     onSave = val => {
+        console.log("SurveyForm, onSave,  BEFORE", this.state);
+        // if (!this.state.Answer) {
+        //     this.setState({Answer: []});
+        // }
         let newAnswer = null;
         if (this.state.Answer) {
             newAnswer = this.state.Answer.filter( ans => ans.questionId !== val.questionId);
@@ -73,16 +112,31 @@ class SurveyForm extends Component {
             Answer: [...newAnswer, val]
         }));
         const answerElement = document.getElementById(val.answerId);
-
+        console.log("SurveyForm, onSave, answer Element", answerElement);
         if (answerElement && answerElement !== "undefined") {
+            console.log("!!!SurveyForm, onSave, answer Element SET");
             document.getElementById(val.answerId).checked = "checked";
         }
+        console.log("SurveyForm, onSave, answer Element AFTER",  document.getElementById(val.answerId));
+        console.log("SurveyForm, onSave, state AFTER", this.state);
+        
     };
 
   render() {
+      // console.log("SurveyForm, render, props.survey", this.props.survey);
+      console.log("SurveyForm, render, props", this.props);
+      // this.props.survey && this.props.survey.survey &&
+        // console.log("SurveyForm, render, props.survey answers", this.props.survey.survey.questions[1].answers);
       if (this.props.survey && this.props.survey.survey ) {
+          /*&& /*this.props.survey.survey.fetched &&*/
+          // this.props.survey.survey.questions && this.props.survey.survey.questions[0] /*&& this.props.survey.survey.questions[0].answers*/)
         const {Answer} = this.state;
+        // console.log("SurveyForm, render. state questions 0 answers", this.state.questions[0].answers);
+        // console.log("SurveyForm, Answer", Answer);
         let questions = this.props.survey.survey.questions.slice(0);
+        // console.log("SurveyFrorm, questions", questions);
+        //   console.log("SurveyFrorm, questions 0 answer 0", questions[0]);
+        // const questions = this.props.survey.survey.questions.map( (q, idx) => {
             questions = questions.map( (q, idx) => {
                 if (q.answers === undefined) {
                     return <div>Loading...</div>
@@ -92,7 +146,7 @@ class SurveyForm extends Component {
                         <FormQuestions  {...q}/>
                         <AnswerOpt 
                             questionId={q.id}
-                            AnswerOption={q.answers}
+                            AnswerOption={q.answers} //{this.state.AnswerOpt}
                             Answer={Answer}
                             onSave={this.onSave}
                             question={q}
@@ -114,6 +168,7 @@ class SurveyForm extends Component {
                         Submit
                     </Button>
                 </form>
+                {/*<button className="btn btn-success" onClick={this.logState}>Log</button>*/}
             </div>
         );
 

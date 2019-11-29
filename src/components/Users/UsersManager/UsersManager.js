@@ -36,18 +36,22 @@ class UsersManager extends Component {
     }
 
     createUser() {
+        console.log("Users Manager, createUser");
         this.props.onResetUser(true, true);
         this.props.onCreateUser();
         this.props.history.push("/user");
     }
 
     editUser(user) {
+        console.log("Users Manager, editUser, user accountFK", user);
         this.props.onResetUser(true, false);
         this.props.onSelectUser(user.id);
+        // this.props.onFetchUser(user);
         this.props.history.push("/user");
     }
 
     deleteUser(user_id) {
+        console.log("Users Manager, deleteUser, user id", user_id);
         this.props.onDeleteUser(user_id);
     }
 

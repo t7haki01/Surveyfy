@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import SurveyChart from './SurveyChart';
-import setting from '../../assets/settings/setting';
+
 class Question extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +16,7 @@ class Question extends Component {
   }
   componentDidMount() {
     axios
-      .get(setting.api.url+'/answers/survey/count/' + this.props.survey)
+      .get('http://localhost:3000/answers/survey/count/' + this.props.survey)
       .then(res => {
         const numbers = res.data[0].number;
         this.setState({ numbers: numbers });
@@ -39,7 +39,7 @@ class Question extends Component {
       this.setState({ buttonText: 'Hide Questions' });
     }
     axios
-      .get(setting.api.url + '/surveys/' + this.props.survey + '/questions')
+      .get('http://localhost:3000/surveys/' + this.props.survey + '/questions')
       .then(res => {
         const questions = res.data;
         this.setState({ questions });

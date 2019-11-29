@@ -6,6 +6,8 @@ import {
     FETCH_ACCOUNT,
     CREATE_ACCOUNT,
     EDIT_ACCOUNT,
+    // DELETE_ACCOUNT,
+    // LIST_ACCOUNTS,
     SAVE_ACCOUNT,
     RESET_ACCOUNT,
     SET_ACCOUNT_ID,
@@ -16,6 +18,7 @@ import {
     CREATE_NEW_ACCOUNT
 } from "../actions/actionsTypes";
 
+// import {updateObject} from "../utility";
 import moment from 'moment';
 import {updateObject} from "../utility";
 
@@ -33,6 +36,7 @@ const accountReducers = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_ACCOUNT: {
             if (action.account) {
+                // console.log("accountReducer, account", action.account);
                 const acnt = action.account;
                 const useraccount = {
                     id: acnt.id,
@@ -47,7 +51,10 @@ const accountReducers = (state = initialState, action) => {
                     fetchSuccess: true
                 };
 
+                //const newState = updateObject(state, user_account);
+                //console.log("accountReduces, newState", newState);
                 return {...state, ...useraccount};
+                // return updateObject(state, {account: action.account});
             }
             return state;
         }
@@ -67,6 +74,9 @@ const accountReducers = (state = initialState, action) => {
                 routing: true,
                 editing: true
             };
+            // const acnt = action.account;
+            console.log("uaccountrReducers, create account, account", account);
+            // console.log("accountrReducers, create account, useraccount", account);
             return {...state, ...account};
         }
         case CREATE_ACCOUNT_FAILED: {
@@ -84,6 +94,7 @@ const accountReducers = (state = initialState, action) => {
                 editing: false,
                 saveSuccess: true
             };
+            console.log("accountReducers, create new account, return action.account", {...newAccount});
             return {...newAccount};
         }
 
@@ -136,10 +147,16 @@ const accountReducers = (state = initialState, action) => {
                 componentShouldUpdate: true
             };
             const newState = {...state, ...account};
+            console.log("accountReducers, reset account, newState", newState);
             return {...state, ...account};
+            // return {...initialState};
         }
 
         case SET_ACCOUNT_ID: {
+            // const account = {id: action.accountId};
+            // const newState = {...state, ...account};
+            // console.log("accountReducers, set account id, newState", newState);
+            // return {...state, ...account};
             return state;
         }
 

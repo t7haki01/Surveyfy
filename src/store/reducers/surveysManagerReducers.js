@@ -1,6 +1,8 @@
 import {
+    // CREATE_SURVEY, CREATE_SURVEY_FAILED,
     DELETE_SURVEY, DELETE_SURVEY_FAILED,
     LIST_SURVEYS, LIST_SURVEYS_FAILED,
+    // SET_SURVEY_ID
 } from "../actions/actionsTypes";
 import {updateObject} from "../utility";
 
@@ -11,7 +13,9 @@ const initialState = {
 const surveysManagerReducers = (state = initialState, action) => {
     switch (action.type) {
         case LIST_SURVEYS: {
+            console.log("surveysManagerReducers, action surveys", action.surveys);
             const surveys = action.surveys;
+            console.log("surveysManagerReducers, surveys", surveys);
             return {
                 surveys: surveys
             }

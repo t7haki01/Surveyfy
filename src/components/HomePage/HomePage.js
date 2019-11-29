@@ -1,7 +1,15 @@
 
 import React, {Component} from 'react';
+// import {NavLink} from "react-router-dom";
 import {connect} from 'react-redux';
+
+// import {PageHeader} from 'react-bootstrap';
+
+// import Aux from "../../hoc/Auxiliary/Auxiliary";
 import classes from "./HomePage.css";
+
+// import Account from "../Accounts/Account/Account";
+import Protected from "../Login/Protected";
 
 class HomePage extends Component {
     
@@ -82,6 +90,7 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log("HomePage, mapStateToProps, state", state);
     return {
         app: state.app
     }

@@ -12,7 +12,9 @@ const initialState = {
 const usersManagerReducers = (state = initialState, action) => {
     switch (action.type) {
         case LIST_USERS: {
+            console.log("usersManagerReducers, action users", action.users);
             const users = action.users;
+            console.log("usersManagerReducers, users", users);
             return {
                     users: users
             }
@@ -24,6 +26,7 @@ const usersManagerReducers = (state = initialState, action) => {
             return {...state, selectedUser: action.id}
         }
         case DELETE_USER: {
+            console.log("usersManagerReducers, state users", state.users);
             const users = state.users.slice(0);
             let deleteIndex = null;
             users.forEach((user, index) => {

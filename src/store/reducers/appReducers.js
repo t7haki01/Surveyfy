@@ -19,11 +19,13 @@ const initialState = {
 const appReducers = (state = initialState, action) => {
     switch (action.type) {
         case LOGIN_USER: {
+            // console.log("appReducers, LOGIN_USER, action", action);
             return {
                 logged_in: true,
                 loggedIn: true,
                 account_id: action.account_id,
                 user_id: action.user_id,
+                // type: action.type,
                 firstname: action.user_name
             }
         }
@@ -59,9 +61,11 @@ const appReducers = (state = initialState, action) => {
                 user_id: action.user.id,
                 firstname: action.user.firstname
             };
+            console.log("appReducers, set account id name, newApp", newApp);
             return {...newApp};
         }
         case FETCH_USER_FIRSTNAME: {
+            // console.log("appReducers, fetch user firstname, state", state);
             const app = {
                 account_id: action.account_id,
                 firstname: action.firstname

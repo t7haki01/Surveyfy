@@ -16,7 +16,9 @@ const initialState = {
 const accountsManagerReducers = (state = initialState, action) => {
     switch (action.type) {
         case LIST_ACCOUNTS: {
+            console.log("accountsManagerReducers, action accounts", action.accounts);
             const accounts = action.surveys;
+            console.log("accountsManagerReducers, accounts", accounts);
             return {
                 accounts: accounts
             }
@@ -31,6 +33,7 @@ const accountsManagerReducers = (state = initialState, action) => {
             return {...state, selectedAccount: action.id}
         }
         case DELETE_ACCOUNT: {
+            console.log("accountsManagerReducers, state accounts", state.accounts);
             const accounts = state.accounts.slice(0);
             let deleteIndex = null;
             accounts.forEach((account, index) => {

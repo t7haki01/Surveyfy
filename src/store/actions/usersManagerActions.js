@@ -5,6 +5,7 @@ import {
 import axios from "../../axios-survey";
 
 const listUsers = (users) => {
+    console.log("action, listUsers", users);
     return {type: LIST_USERS, users: users}
 };
 
@@ -20,6 +21,7 @@ export const asyncListUsers = () => {
                 if (response.data.errno) {
                     dispatch(listUsersFailed(response.data.sqlMessage));
                 } else {
+                    console.log("asyncListUsers, response", response);
                     const users = response.data;
                     dispatch(listUsers(users));
                 }
@@ -33,6 +35,7 @@ export const selectUser = (user_id) => {
 };
 
 const deleteUser = (user_id) => {
+    console.log("deleteUser");
     return {type: DELETE_USER, id: user_id}
 };
 
@@ -41,9 +44,11 @@ const deleteUserFailed = (error) => {
 };
 
 export const asyncDeleteUser = (user_id) => {
+    console.log("asyncDeleteUser, user id", user_id);
     return dispatch => {
         axios.delete(`/users/${user_id}`)
         .then(response => {
+            console.log("asyncDeleteUser, response", response);
             if (response.status === 200) {
                 if (response.data.errno) {
                     console.log("ERROR",response.data.sqlMessage);

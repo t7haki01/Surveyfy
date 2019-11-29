@@ -11,7 +11,13 @@ import Success from './Success';
 import axios from "../../axios-survey";
 import {connect} from 'react-redux';
 import {
+    // asyncFetchAccount,
+    // asyncListAccounts,,
     asyncCreateAccount,
+    // asyncSaveAccount,
+    // asyncSaveNewAccount,
+    // cancelEditAccount,
+    // editAccount
 } from "../../store/actions";
 
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
@@ -85,15 +91,13 @@ export class UserForm extends Component {
             />
         );
       case 4:
-        alert("Currently registration disabled in shared hosting!!")
-        return (<Redirect to="/homepage"/>)
-        // return (
-        //   <Confirm
-        //     nextStep={this.nextStep}
-        //     prevStep={this.prevStep}
-        //     values={values}
-        //     />
-        // );
+        return (
+          <Confirm
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            values={values}
+            />
+        );
       case 5:
         return (<Success />);
 
@@ -107,6 +111,7 @@ export class UserForm extends Component {
 }
 
 const mapStateToProps = (state) => {
+    // console.log("Account, mapStateToProps, account", state.account);
     return {
         app: state.app,
         user: state.user,
@@ -116,7 +121,15 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        // onFetchAccount: (account_id) => dispatch(asyncFetchAccount(account_id)),
         onCreateAccount: (account) => dispatch(asyncCreateAccount(account)),
+        // onListAccounts: () => dispatch(asyncListAccounts()),
+        // onEditAccount: (account) => dispatch(editAccount(account)),
+        // onCancelEditAccount: (account) => dispatch(cancelEditAccount(account)),
+        // onSaveAccount: (account) => dispatch(asyncSaveAccount(account)),
+        // onSaveNewAccount: (account) => dispatch(asyncSaveNewAccount(account)),
+        // onSetAccountId: (account_id) => dispatch(setAccountId(account_id)),
+        // onResetAccount: () => dispatch(resetAccount())
     }
 };
 

@@ -36,7 +36,9 @@ class App extends Component {
     AuthHandler = new AuthHandler();
 
     constructor() {
+    //         // this.props.onSetAccountId(this.props.app.account_id);
         super();
+    console.log('App, componentDidMount, props', this.props);
         this.state = {
             id: ''
         };
@@ -44,6 +46,10 @@ class App extends Component {
 
 
     componentDidMount() {
+        // this.props.onFetchFirstname(this.props.app.account_id);
+        //         // this.props.onSetAccountId(this.props.app.account_id);
+        //         // this.props.onSetUserAccountFK(this.props.app.account_id);
+        console.log('App, componentDidMount, props', this.props);
         if (this.AuthHandler.loggedIn() && this.AuthHandler.tokenCheck()) {
             this.props.onLoginUser(this.AuthHandler.getData().id);
             this._setInfo();
@@ -52,10 +58,12 @@ class App extends Component {
 
     _setInfo() {
         this.setState({id: this.AuthHandler.getData().id}, function () {
+            console.log("state for the props: " + this.state.id);
         });
     }
 
     _handleLogout = () => {
+        console.log("App, handleLogout");
         this.AuthHandler.logout();
         this.props.onLogoutUser();
         this.props.history.replace('/login');
@@ -95,6 +103,7 @@ class App extends Component {
           <Route path="/login" component={Login}/>
           <Redirect to="/home"/>
         </Switch>
+        {/*{!this.props.app.loggedIn ? null :*/}
         <footer style={{...footerStyle}}>&copy; Survey Inc</footer>
 </div>
 );

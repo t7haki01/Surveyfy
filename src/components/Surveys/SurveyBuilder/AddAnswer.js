@@ -6,8 +6,12 @@
 import React, {Component} from 'react';
 import {NavLink, } from 'react-router-dom';
 import {
+    //Table,
     FormControl, FormGroup, ControlLabel, PageHeader,
+    //Button, ButtonToolbar, Alert
     } from 'react-bootstrap';
+
+// import AddQuestion from "./AddQuestion";
 
 import classes from "./SurveyBuilder.css";
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Chart } from 'react-google-charts';
 import Axios from 'axios';
-import setting from '../../assets/settings/setting';
 
 class SurveyChart extends Component {
   constructor(props) {
@@ -46,14 +45,14 @@ class SurveyChart extends Component {
 
     /**Here getting data(number) to show number of people who answered question based on question id*/
     var urlNumbers =
-      setting.api.url + '/answers/question/count/' + this.state.questionId;
+      'http://localhost:3000/answers/question/count/' + this.state.questionId;
     Axios.get(urlNumbers).then(res => {
       this.setState({ number: res.data[0].number });
     });
 
     /**Here getting question information based on question id */
     var urlQuestion =
-      setting.api.url + '/questions/' + this.state.questionId;
+      'http://localhost:3000/questions/' + this.state.questionId;
     Axios.get(urlQuestion).then(res => {
       this.setState({ question: res.data[0].question });
     });
@@ -78,7 +77,7 @@ class SurveyChart extends Component {
 
     /**Here getting answer options based on question id */
     var urlOptions =
-      setting.api.url + '/answer_options/question/' + this.state.questionId;
+      'http://localhost:3000/answer_options/question/' + this.state.questionId;
     Axios.get(urlOptions).then(res => {
       var optionArray = [];
 
@@ -109,7 +108,7 @@ class SurveyChart extends Component {
     /**Here getting clients answers for the question based on question id */
 
     var urlAnswers =
-      setting.api.url + '/answers/question/' + this.state.questionId;
+      'http://localhost:3000/answers/question/' + this.state.questionId;
     Axios.get(urlAnswers).then(res => {
       var answerArray = [];
 

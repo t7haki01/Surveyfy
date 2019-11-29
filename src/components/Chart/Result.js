@@ -6,7 +6,6 @@ import Question from './Question';
 import classes from './Result.css';
 import CompanyOnly from '../Login/CompanyOnly';
 import AuthHandler from '../Login/AuthHandler';
-import setting from '../../assets/settings/setting';
 
 class Result extends Component {
   AuthHandler = new AuthHandler();
@@ -20,7 +19,7 @@ class Result extends Component {
   componentDidMount() {
     if(this.AuthHandler.getData().type === "admin"){
       axios
-      .get(setting.api.url + '/surveys/')
+      .get(`http://localhost:3000/surveys/`)
       .then(res => {
         const surveys = res.data;
         this.setState({ surveys });
@@ -28,7 +27,7 @@ class Result extends Component {
     }
     else{
       axios
-      .get(setting.api.url + '/surveys/owner/' + this.state.owner)
+      .get(`http://localhost:3000/surveys/owner/` + this.state.owner)
       .then(res => {
         const surveys = res.data;
         this.setState({ surveys });
@@ -68,3 +67,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(null, mapDispatchToProps)(CompanyOnly(Result));
+// export default Result;
