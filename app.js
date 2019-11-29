@@ -41,4 +41,8 @@ app.listen(process.env.SERVER_PORT || port, () =>
   console.log('server running on localhost:3000')
 );
 
+// var http = require('http');
+// var server = http.createServer(app);
+// server.listen()
+
 module.exports = app;
