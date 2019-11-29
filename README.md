@@ -8,7 +8,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - private.key
 - public.key
 *If API port would be used differently then change the url in './src/settings/setting.json', then build again
-3. 
 
 ## Scenario
 
@@ -22,8 +21,8 @@ Customer can participate on provided survey so that archieve point/promotion.
 ## Description
 
 Fullstack project in Autumn 2018,
-Original Front end git repository - https://github.com/tapiopa/SurveyApplication
-Original REST API repository - https://github.com/t7haki01/surveyAPI
+- Original Front end git repository - https://github.com/tapiopa/SurveyApplication
+- Original REST API repository - https://github.com/t7haki01/surveyAPI
 
 This repository is reformatted to provide application in a single node, root and port
 
