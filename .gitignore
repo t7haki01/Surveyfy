@@ -4,7 +4,6 @@
 
 #PRIVATE
 .env
-database.js
 private.key
 public.key
-
+database.js

@@ -85,7 +85,8 @@ export class UserForm extends Component {
             />
         );
       case 4:
-        return(alert("Currently disabled registration!"))
+        alert("Currently registration disabled in shared hosting!!")
+        return (<Redirect to="/homepage"/>)
         // return (
         //   <Confirm
         //     nextStep={this.nextStep}
