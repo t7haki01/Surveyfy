@@ -82,6 +82,7 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log("HomePage, mapStateToProps, state", state);
     return {
         app: state.app
     }

@@ -1,33 +1,17 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## TODO
+## Available Scripts
 
-1. "npm install" for application dependencies
-2. Set proper values for corresponding fields under
-- database.js
-- private.key
-- public.key
-*If API port would be used differently then change the url in './src/settings/setting.json', then build again
+In the project directory, you can run:
 
-## Scenario
+### `npm start`
 
-Company can make survey for own business usage,
-Customer can participate on provided survey so that archieve point/promotion.
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-1. Client A is "company" - can make/edit/delete survey
-2. Client B is "customer" - can participate on survey
-- Client A can check survey result, but not able to modify
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-## Description
-
-Fullstack project in Autumn 2018,
-- Original Front end git repository - https://github.com/tapiopa/SurveyApplication
-- Original REST API repository - https://github.com/t7haki01/surveyAPI
-
-This repository is reformatted to provide application in a single node, root and port
-
-- Below for the react JS
--------------------------------------------------------------------------------------------------------------
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br>

@@ -97,7 +97,7 @@ class Login extends Component {
                         <div className={classes.right}>
                             <div className={classes.showcase}>
                                 <div className={classes.showcaseContent}>
-                                    <h1 className={classes.show}>
+                                    <h1 className={classes.show} caseText>
                                         Let's survey <strong>the future</strong>
                                     </h1>
                                     <NavLink to="/Home" className={classes.secondaryBtn}>Start a

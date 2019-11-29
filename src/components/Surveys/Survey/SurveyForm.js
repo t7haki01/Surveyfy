@@ -21,6 +21,7 @@ class SurveyForm extends Component {
     constructor(props){
         super(props);
         this.getSurvey = this.getSurvey.bind(this);
+        this.logState = this.logState.bind(this);
         this.state={title: ""}
     }
 

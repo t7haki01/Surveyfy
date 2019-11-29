@@ -258,7 +258,7 @@ class Account extends Component {
 
     getDateMoment = dateString => {
         if (dateString) {
-            if (dateString.constructor.name === 'String') {
+            if (dateString.constructor.name == 'String') {
                 const year = dateString.slice(0, 4);
                 const month = dateString.slice(5, 7);
                 const day = dateString.slice(8, 10);
@@ -282,7 +282,7 @@ class Account extends Component {
 
     formatMoment(dateString, withTime) {
         let dateMoment = dateString;
-        if (dateString && dateString.constructor.name === 'String') {
+        if (dateString && dateString.constructor.name == 'String') {
             dateMoment = this.getDateMoment(dateString);
         }
         if (withTime) {
@@ -293,10 +293,10 @@ class Account extends Component {
     }
 
     formatMomentForDatabaseSaving(dateMoment) {
-        if (dateMoment && dateMoment.constructor.name === 'String') {
+        if (dateMoment && dateMoment.constructor.name == 'String') {
             dateMoment = this.getDateMoment(dateMoment);
         }
-        if (dateMoment && dateMoment.constructor.name === 'Moment') {
+        if (dateMoment && dateMoment.constructor.name == 'Moment') {
             return dateMoment.format('YYYY-MM-DD hh:mm:ss');
         }
         return null;
