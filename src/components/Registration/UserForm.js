@@ -85,13 +85,14 @@ export class UserForm extends Component {
             />
         );
       case 4:
-        return (
-          <Confirm
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            values={values}
-            />
-        );
+        return(alert("Currently disabled registration!"))
+        // return (
+        //   <Confirm
+        //     nextStep={this.nextStep}
+        //     prevStep={this.prevStep}
+        //     values={values}
+        //     />
+        // );
       case 5:
         return (<Success />);
 
