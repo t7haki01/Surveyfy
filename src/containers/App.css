@@ -1,0 +1,30 @@
+/*
+* App.css
+*
+*/
+.App {
+  text-align: center;
+}
+.nav {
+  float: left;
+  /*margin-right: 2rem;*/
+  margin-bottom: 20rem;
+  padding-right: 1rem;
+  border-right: 1px solid dodgerblue;
+}
+.link {
+  float: right;
+  /*display: block;*/
+}
+
+.header {
+  width: 70%;
+  float: right;
+  text-align: right;
+  margin-left: 30%;
+  /*border: 1px solid red;*/
+}
+
+.list {
+  list-style-type: none;
+}

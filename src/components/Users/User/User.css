@@ -1,0 +1,84 @@
+/*
+* User.css
+*
+*/
+
+.userComponent {
+    /*float: right;*/
+    /*width: 70%;*/
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5rem;
+    /*border: 1px solid red;*/
+}
+
+.buttonToolbar {
+    /*width: 70%;*/
+    /*float: right;*/
+    /*text-align: center;*/
+    /*margin-left: 30rem;*/
+    padding-left: 12rem;
+    /*border: 1px solid red;*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+}
+/*.buttonToolbar button {*/
+    /*float: right;*/
+/*}*/
+/*.buttonToolbarButton {*/
+    /*float: right;*/
+/*}*/
+.Form {
+    /*float: left;*/
+    width: 32rem;
+    margin-left: auto;
+    margin-right: auto;
+    /*display: inline-block;*/
+    /*margin-top: 5rem;*/
+    /*border: 1px solid red;*/
+}
+.Label {
+    width: 10rem;
+    float: left;
+    text-align: right;
+    /*margin-left: 2rem;*/
+    padding-right: 1rem;
+    /*border: 1px solid blue;*/
+}
+
+.Input {
+    width: 15rem;
+    /*margin: 1px solid lightgray;*/
+    /*border-radius: 5px;*/
+    /*box-shadow: 1px #cccccc;*/
+    /*margin-left: 2rem;*/
+    /*padding-left: 2rem;*/
+    /*border: 1px solid green;*/
+}
+
+.datePicker {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    height: 2.5rem;
+    padding: .5rem;
+    /*float: left;*/
+    /*position: relative;*/
+    /*text-align: left;*/
+    /*margin-left: 3px;*/
+    width: 15rem;
+    /*border: 1px solid red;*/
+}
+
+.formGroup {
+    width: 25.5rem;
+    /*border: 1px solid red;*/
+}
+
+.select {
+    width: 15rem;
+}
+
+.buttonToolbar {
+    width: 30rem;
+    /*float: right;*/
+}

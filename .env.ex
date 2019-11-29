@@ -1,0 +1,1 @@
+#Currently .env is not used but database credential could be used here but now replaced as hidden file

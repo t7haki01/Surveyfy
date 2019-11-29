@@ -1,0 +1,10 @@
+/node_modules
+/package-lock.json
+
+
+#PRIVATE
+.env
+database.js
+private.key
+public.key
+
