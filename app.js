@@ -37,8 +37,13 @@ app.get('*', (req, res) => {
 
 var port = 3000;
 
-app.listen(process.env.SERVER_PORT || port, () =>
+app.listen(process.env.PORT || port, () =>
   console.log('server running on localhost:3000')
 );
+
+// Setting for shared hosting, when specific port is not allowed
+// var http = require('http');
+// var server = http.createServer(app);
+// server.listen()
 
 module.exports = app;

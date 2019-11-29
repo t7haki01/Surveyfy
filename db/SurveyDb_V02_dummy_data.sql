@@ -21,7 +21,15 @@
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (1,'test1','$2b$10$qEfIAO1xdCKls/ZfTKWR9../Lc9ls9vMJ4/x8ZVxpOUp7DFfJVRti',0,'2018-11-26 10:44:49','0000-00-00 00:00:00','2018-11-26 10:44:49'),(2,'test2','$2b$10$RMFOTkT0AL5hxk8Scbtvje78FsvZ7/EeIQHOoWT2hSoXmr/AAyNHC',0,'2018-11-26 10:44:49','0000-00-00 00:00:00','2018-11-26 10:44:49'),(3,'test3','$2b$10$tuPyaIYSJCl5p7ewCqwZTOH6w.cEz.mW72OMoK3JAxmDeidhe538W',0,'2018-11-26 10:58:41','0000-00-00 00:00:00','2018-11-26 10:58:41'),(4,'test4','$2b$10$/KZLJro5F.DS8r/psTxMd.FtxxmXvM.2gHTyIL6u75x8.bHL4Auai',0,'2018-11-26 10:58:41','0000-00-00 00:00:00','2018-11-26 10:58:41'),(5,'test5','$2b$10$v2xQZGeBFKCvztzkfCuwXO6lqjbbCAJRo.cRJZOn49hCnsx8TP2PG',0,'2018-11-26 10:58:41','0000-00-00 00:00:00','2018-11-26 10:58:41'),(6,'test6','$2b$10$P3MUuCKI49pJr2G7xzoyZ.6fyoeoTUBEXwesqcv4GLp2m/mRypu9a',0,'2019-11-26 11:01:31','0000-00-00 00:00:00','2019-11-26 11:01:31'),(7,'test7','$2b$10$RRi7KcGRPNh7DMT1OPQ3wuZsQnECf3otiaQCqZzzcTo.Lpy0wYZWS',0,'2019-11-26 11:01:31','0000-00-00 00:00:00','2019-11-26 11:01:31'),(8,'test8','$2b$10$hY/E7zY4urUia4z.u0sme.HrhynftCLGvpl559B8NcInjqN0bdSfK',0,'2019-11-26 11:03:57','0000-00-00 00:00:00','2019-11-26 11:03:57'),(9,'test9','$2b$10$M71SZjNd4t9UqeMBsuY.pu9ISfxrQJwUjtmcidybL1bTc.IoJQ/Z.',0,'2018-11-26 11:06:45','2019-11-26 11:06:45','2018-11-26 11:06:45'),(13,'admin','$2b$10$JuwOfJB2nREFS7A40k4VNuAGLZg0zNbEGK5bxIXAB5PKvhlQLJUGC',0,'2018-11-26 11:10:54','2019-11-26 11:10:54','2018-11-26 11:10:54');
+INSERT INTO `account` VALUES (1,'customerA','$2b$10$qEfIAO1xdCKls/ZfTKWR9../Lc9ls9vMJ4/x8ZVxpOUp7DFfJVRti',0,'2018-11-26 10:44:49','0000-00-00 00:00:00','2018-11-26 10:44:49'),(2,'customerB','$2b$10$RMFOTkT0AL5hxk8Scbtvje78FsvZ7/EeIQHOoWT2hSoXmr/AAyNHC',0,'2018-11-26 10:44:49','0000-00-00 00:00:00','2018-11-26 10:44:49'),
+(3,'customerC','$2b$10$tuPyaIYSJCl5p7ewCqwZTOH6w.cEz.mW72OMoK3JAxmDeidhe538W',0,'2018-11-26 10:58:41','0000-00-00 00:00:00','2018-11-26 10:58:41'),
+(4,'customerD','$2b$10$/KZLJro5F.DS8r/psTxMd.FtxxmXvM.2gHTyIL6u75x8.bHL4Auai',0,'2018-11-26 10:58:41','0000-00-00 00:00:00','2018-11-26 10:58:41'),
+(5,'customerE','$2b$10$v2xQZGeBFKCvztzkfCuwXO6lqjbbCAJRo.cRJZOn49hCnsx8TP2PG',0,'2018-11-26 10:58:41','0000-00-00 00:00:00','2018-11-26 10:58:41'),
+(6,'customerF','$2b$10$P3MUuCKI49pJr2G7xzoyZ.6fyoeoTUBEXwesqcv4GLp2m/mRypu9a',0,'2019-11-26 11:01:31','0000-00-00 00:00:00','2019-11-26 11:01:31'),
+(7,'customerG','$2b$10$RRi7KcGRPNh7DMT1OPQ3wuZsQnECf3otiaQCqZzzcTo.Lpy0wYZWS',0,'2019-11-26 11:01:31','0000-00-00 00:00:00','2019-11-26 11:01:31'),
+(8,'customerH','$2b$10$hY/E7zY4urUia4z.u0sme.HrhynftCLGvpl559B8NcInjqN0bdSfK',0,'2019-11-26 11:03:57','0000-00-00 00:00:00','2019-11-26 11:03:57'),
+(9,'customerI','$2b$10$M71SZjNd4t9UqeMBsuY.pu9ISfxrQJwUjtmcidybL1bTc.IoJQ/Z.',0,'2018-11-26 11:06:45','2019-11-26 11:06:45','2018-11-26 11:06:45'),
+(13,'admin','$2b$10$JuwOfJB2nREFS7A40k4VNuAGLZg0zNbEGK5bxIXAB5PKvhlQLJUGC',0,'2018-11-26 11:10:54','2019-11-26 11:10:54','2018-11-26 11:10:54');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,7 +59,21 @@ UNLOCK TABLES;
 
 LOCK TABLES `question` WRITE;
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
-INSERT INTO `question` VALUES (1,'What is your favorite number among those?',1),(2,'What is your favorite color among those?',1),(3,'What is your favorite Car among those?',1),(4,'What is your favorite food among those?',1),(5,'What is your favorite season among those?',1),(6,'What is your favorite sports among those?',1),(7,'What is your favorite game among those?',1),(8,'What do you want to do now?',2),(9,'What do you want to do tomorrow?',2),(10,'What do you want to do in future?',2),(11,'Is this survey working well?',2),(12,'Please leave some feedback',2),(13,'Which language is the most difficult among those options as you think?',2),(14,'Which holiday is the best?',2),(15,'Which day is the best?',2),(16,'What is your favorite food?',2),(17,'What do you want to do now?',3),(18,'What language is most comfortable to use for you?',3),(19,'How do you think which framework is the best as you think among options?',3),(20,'What is the best programming languages?',3),(21,'Are you male or female?',3),(22,'Are you minor?',3),(23,'Where do you want to travel?',3),(24,'Have you ever been foreign country?',3),(25,'Is this survey fine?',3);
+INSERT INTO `question` VALUES (1,'What is your favorite number among those?',1),
+(2,'Choose Favorite color among options',1),
+(3,'What is your favorite Car among those?',1),
+(4,'What would you choose a food among those?',1),
+(5,'What is your favorite season among those?',1),
+(6,'What is your favorite sports among those?',1),
+(7,'What is your favorite game among those?',1),
+(8,'What do you want to do now?',2),
+(9,'What do you want to do tomorrow?',2),
+(10,'What do you want to do in future?',2),
+(11,'Is this survey working well?',2),
+(12,'Please leave some feedback',2),
+(13,'Which language is the most difficult among those options as you think?',2),
+(14,'Which holiday is the best?',2),
+(15,'Which day is the best?',2),(16,'What is your favorite food?',2),(17,'What do you want to do now?',3),(18,'What language is most comfortable to use for you?',3),(19,'How do you think which framework is the best as you think among options?',3),(20,'What is the best programming languages?',3),(21,'Are you male or female?',3),(22,'Are you minor?',3),(23,'Where do you want to travel?',3),(24,'Have you ever been foreign country?',3),(25,'Is this survey fine?',3);
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
 UNLOCK TABLES;
 
